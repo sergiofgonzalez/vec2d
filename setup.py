@@ -5,7 +5,7 @@ with open("README.md") as file:
 
 setup(
     name="vec2d",
-    version="0.1.0",
+    version="0.1.1",
     author="Sergio F. Gonzalez",
     author_email="sergio.f.gonzalez@gmail.com",
     description="Maths and Graph functions for vectors on the 2D plane",
@@ -14,7 +14,7 @@ setup(
     url="https://github.com/sergiofgonzalez/vec2d",
     packages=["vec2d/graph", "vec2d/math"],
     include_package_data=True,
-    install_requires=["matplotlib"],
+    install_requires=["matplotlib", "numpy"],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

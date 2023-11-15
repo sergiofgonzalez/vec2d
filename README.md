@@ -38,6 +38,10 @@ The library exposes classes for the figures, an enumeration for the common color
 | `Arrow` | `Arrow(tip)`<br>`Arrow(tip, tail)` | Draws an arrow from the origin to the `tip` vector, or from the `tail` vector to the `tip` vector if `tail` if given. |
 | `Segment` | `Segment(start, end)` | Draws a line segment from the start to the vector end. |
 
+## See Also
+
+See also [vec3d](https://pypi.org/project/vec3d/) for a similar library for vectors in the 3D space.
+
 ## Acknowledgements
 
 This library is a small refactoring of https://github.com/orlandpm/Math-for-Programmers library.
