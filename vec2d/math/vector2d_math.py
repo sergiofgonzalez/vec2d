@@ -179,7 +179,7 @@ def rotate(
     angle is negative.
 
     Args:
-        angle (float]): the angle (in radians) that will be used in the rotation
+        angle (float): the angle (in radians) that will be used in the rotation
         vectors (list[tuple[int | float, int | float]]): the list of vectors in
         to Cartesian coordinates to be rotated
 
@@ -201,7 +201,7 @@ def rescale(
     of the input vectors all of them scaled by the given factor.
 
     Args:
-        factor (float]): the factor to be used when scaling.
+        factor (float): the factor to be used when scaling.
         vectors (list[tuple[int | float, int | float]]): the list of vectors in
         to Cartesian coordinates to be rotated
 
