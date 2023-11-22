@@ -5,10 +5,19 @@ capabilities.
 from vec2d.graph.vector2d_graphics import (
     Arrow,
     Colors,
+    LineStyles,
     Points,
     Polygon,
     Segment,
     draw,
 )
 
-__all__ = ["Colors", "Segment", "Points", "Polygon", "Arrow", "draw"]
+__all__ = [
+    "Arrow",
+    "Colors",
+    "LineStyles",
+    "Points",
+    "Polygon",
+    "Segment",
+    "draw",
+]

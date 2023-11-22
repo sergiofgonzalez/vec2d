@@ -1,11 +1,12 @@
+"""Setup file for vec2d library"""
 from setuptools import setup
 
-with open("README.md") as file:
+with open("README.md", encoding="utf-8") as file:
     read_me_description = file.read()
 
 setup(
     name="vec2d",
-    version="0.1.1",
+    version="0.2.0",
     author="Sergio F. Gonzalez",
     author_email="sergio.f.gonzalez@gmail.com",
     description="Maths and Graph functions for vectors on the 2D plane",

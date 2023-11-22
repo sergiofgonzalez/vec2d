@@ -1,7 +1,7 @@
 """
 A library providing a few Math related functions for the 2D plane.
 """
-from math import cos, pi, sin, sqrt, atan2
+from math import atan2, cos, pi, sin, sqrt
 
 
 def add(
@@ -193,6 +193,7 @@ def rotate(
     vectors_polar = [to_polar(v) for v in vectors]
     return [to_cartesian((r, theta + angle)) for r, theta in vectors_polar]
 
+
 def rescale(
     factor: float,
     vectors: list[tuple[int | float, int | float]],
@@ -244,11 +245,13 @@ def to_cartesian(polar_vector: tuple[float, float]) -> tuple[float, float]:
     Returns:
         tuple[float, float]: the Cartesian coordinates (x, y) of the vector.
     """
-    length, angle = polar_vector
-    return (length * cos(angle), length * sin(angle))
+    l, a = polar_vector
+    return (length * cos(a), l * sin(a))
 
 
-def to_polar(cartesian_vector: tuple[float, float], positive_angle=False) -> tuple[float, float]:
+def to_polar(
+    cartesian_vector: tuple[float, float], positive_angle=False
+) -> tuple[float, float]:
     """Returns the polar coordinates (r, θ) of a vector, where r is the length
     of the vector and the angle θ is expressed in radians, measured
     counterclockwise from the positive x axis given its Cartesian coordinates

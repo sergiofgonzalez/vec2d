@@ -12,9 +12,9 @@ from typing import Optional, Sequence
 
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.pyplot import xlim, ylim
-from matplotlib.patches import Polygon as pyplot_poly
 from matplotlib.collections import PatchCollection
+from matplotlib.patches import Polygon as pyplot_poly
+from matplotlib.pyplot import xlim, ylim
 
 logging.basicConfig(
     format="%(asctime)s [%(levelname)8s] (%(name)s) | %(message)s"
@@ -22,7 +22,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-logger.info("Using vec2d.graph v0.1.1")
+logger.info("Using vec2d.graph v0.2.0")
 
 
 class Colors(Enum):
@@ -41,6 +41,19 @@ class Colors(Enum):
     PINK = "C6"
     ORANGE = "C11"
     GRAY = "gray"
+
+
+class LineStyles(Enum):
+    """A few Matplotlib linestyles defined for convenience."""
+
+    SOLID = "solid"
+    DASHED = "dashed"
+    DOTTED = "dotted"
+    DASH_DOT = "dashdot"
+    LOOSELY_DOTTED = (0, (1, 10))
+    DENSELY_DOTTED = (0, (1, 1))
+    LOOSELY_DASHED = (0, (5, 10))
+    DENSELY_DASHED = (0, (5, 1))
 
 
 class Figure2D(ABC):
@@ -70,6 +83,13 @@ class Figure2D(ABC):
         a color from Colors enumeration, a Matplotlib color, or a value from a
         colormap can be used."""
         return color.value if hasattr(color, "value") else color
+
+    def normalize_linestyle(self, linestyle):
+        """Normalize the linestyle with which a Figure2D has been initialized so
+        that it matches Matplotlib's native handling of linestyles. That way,
+        either a linestyle from LineStyles enumeration or a native Matplotlib
+        linestyle can be used."""
+        return linestyle.value if hasattr(linestyle, "value") else linestyle
 
 
 class Points(Figure2D):
@@ -106,19 +126,21 @@ class Segment(Figure2D):
         end_point: tuple[int | float, int | float],
         *,
         color: Colors = Colors.BLUE,
+        linestyle: LineStyles = LineStyles.SOLID,
     ) -> None:
         self.start_point = start_point
         self.end_point = end_point
         self.color = self.normalize_color(color)
+        self.linestyle = self.normalize_linestyle(linestyle)
 
     def extract_vectors(self) -> tuple[int | float, int | float]:
         yield self.start_point
         yield self.end_point
 
     def render(self) -> None:
-        x1, y1 = self.start_point  # pylint: disable=invalid-name
-        x2, y2 = self.end_point  # pylint: disable=invalid-name
-        plt.plot([x1, x2], [y1, y2], color=self.color)
+        x1, y1 = self.start_point
+        x2, y2 = self.end_point
+        plt.plot([x1, x2], [y1, y2], color=self.color, linestyle=self.linestyle)
 
 
 class Polygon(Figure2D):
@@ -130,17 +152,20 @@ class Polygon(Figure2D):
     established the alpha blending parameter. By default, the alpha blending is
     set to a 0.4 value.
     """
+
     def __init__(
         self,
         *vertices: tuple[int | float, int | float],
         color=Colors.BLUE,
         fill: Optional[Colors] = None,
         alpha=0.4,
+        linestyle=LineStyles.SOLID,
     ) -> None:
         self.vertices = vertices
         self.color = self.normalize_color(color)
         self.fill = self.normalize_color(fill)
         self.alpha = alpha
+        self.linestyle = self.normalize_linestyle(linestyle)
 
     def extract_vectors(self) -> tuple[int | float, int | float]:
         for v in self.vertices:  # pylint: disable=invalid-name
@@ -151,7 +176,12 @@ class Polygon(Figure2D):
             for i in range(0, len(self.vertices)):
                 x1, y1 = self.vertices[i]
                 x2, y2 = self.vertices[(i + 1) % len(self.vertices)]
-                plt.plot([x1, x2], [y1, y2], color=self.color)
+                plt.plot(
+                    [x1, x2],
+                    [y1, y2],
+                    color=self.color,
+                    linestyle=self.linestyle,
+                )
 
         if self.fill:
             patches = []
@@ -174,10 +204,12 @@ class Arrow(Figure2D):
         tip: tuple[int | float, int | float],
         tail=(0, 0),
         color=Colors.RED,
+        linestyle=LineStyles.SOLID,
     ) -> None:
         self.tip = tip
         self.tail = tail
         self.color = self.normalize_color(color)
+        self.linestyle = self.normalize_linestyle(linestyle)
 
     def extract_vectors(self) -> tuple[int | float, int | float]:
         yield self.tip
@@ -199,6 +231,7 @@ class Arrow(Figure2D):
             head_length=tip_length,
             fc=self.color,
             ec=self.color,
+            linestyle=self.linestyle,
         )
 
 
