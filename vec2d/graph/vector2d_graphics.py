@@ -22,7 +22,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-logger.info("Using vec2d.graph v0.2.0")
+logger.info("Using vec2d.graph v0.2.1")
 
 
 class Colors(Enum):

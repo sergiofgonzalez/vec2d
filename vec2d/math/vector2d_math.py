@@ -180,8 +180,8 @@ def rotate(
 
     Args:
         angle (float): the angle (in radians) that will be used in the rotation
-        vectors (list[tuple[int | float, int | float]]): the list of vectors in
-        to Cartesian coordinates to be rotated
+        vectors (list[tuple[int | float, int | float]]): the list of vectors,
+        given their Cartesian coordinates, to be rotated
 
     Returns:
         list[tuple[int | float, int | float]]: the list of vectors that results
@@ -246,7 +246,7 @@ def to_cartesian(polar_vector: tuple[float, float]) -> tuple[float, float]:
         tuple[float, float]: the Cartesian coordinates (x, y) of the vector.
     """
     l, a = polar_vector
-    return (length * cos(a), l * sin(a))
+    return (l * cos(a), l * sin(a))
 
 
 def to_polar(

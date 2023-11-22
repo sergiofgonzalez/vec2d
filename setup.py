@@ -6,7 +6,7 @@ with open("README.md", encoding="utf-8") as file:
 
 setup(
     name="vec2d",
-    version="0.2.0",
+    version="0.2.1",
     author="Sergio F. Gonzalez",
     author_email="sergio.f.gonzalez@gmail.com",
     description="Maths and Graph functions for vectors on the 2D plane",
