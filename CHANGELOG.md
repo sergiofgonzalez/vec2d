@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.2.1] - 2024-01-18
+## [0.2.2] - 2024-01-18
 
 
 ### Added
@@ -23,4 +23,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 
-[0.2.1]: https://github.com/sergiofgonzalez/vec2d/compare/v0.2.0...v0.2.1
+[0.2.2]: https://github.com/sergiofgonzalez/vec2d/compare/v0.2.0...v0.2.2

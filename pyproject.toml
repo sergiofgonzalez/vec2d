@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "vec2d"
-version = "0.2.1"
+version = "0.2.2"
 description = "Maths and Graph functions for vectors on the 2D plane"
 authors = ["Sergio F. Gonzalez <sergio.f.gonzalez@gmail.com>"]
 readme = "README.md"
